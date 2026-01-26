@@ -18,4 +18,12 @@ spec:
       containers:
       - name: mycontainer
         image: shaikmustafa/dm
-        ports: 80
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "5Mi"
+            cpu: "50mi"
+          limits:
+            memory: "10Mi"
+            cpu: "100m"
