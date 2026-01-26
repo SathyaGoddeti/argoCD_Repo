@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mystatefulset
+  namespace: dev    
+spec:
+  serviceName: "firstservice"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mystatefulset
+  template:
+    metadata:
+      labels:
+        app: mystatefulset
+    spec:
+      containers:
+      - name: mycontainer
+        image: shaikmustafa/dm
+        ports: 80
