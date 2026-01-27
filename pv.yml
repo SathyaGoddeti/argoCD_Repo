@@ -3,13 +3,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv
-  namespace: dev
 spec:
   capacity:
     storage: 4Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Retain
   awsElasticBlockStore:
     volumeID: vol-03675b7e1f93bd170
     fsType: ext4
+
