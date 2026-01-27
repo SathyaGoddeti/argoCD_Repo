@@ -24,10 +24,7 @@ spec:
 
         - name: helpercontainer
           image: busybox
-          command:
-            - /bin/sh
-            - -c
-            - while true; do echo welcome to sathya; sleep 10; done
+           command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
           volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
