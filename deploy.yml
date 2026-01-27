@@ -31,13 +31,6 @@ spec:
           volumeMounts:
             - name: sathya
               mountPath: /opt/reddy/
-          resources:
-            requests:
-              memory: "10Mi"
-              cpu: "100m"
-            limits:
-              memory: "20Mi"
-              cpu: "200m"
 
       volumes:
         - name: sathya
