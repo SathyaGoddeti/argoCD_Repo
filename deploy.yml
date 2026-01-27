@@ -1,9 +1,9 @@
 ---
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mydeployment
-  namespace: dev  
+  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -11,32 +11,37 @@ spec:
       env: devenv
   template:
     metadata:
-      name: mytemplate
       labels:
         env: devenv
     spec:
       containers:
-      - name: mycontainer
-        image: shaikmustafa/dm
-        volumeMounts:
+        - name: mycontainer
+          image: shaikmustafa/dm
+          ports:
+            - containerPort: 80
+          volumeMounts:
             - name: sathya
               mountPath: /opt/reddy/
-        ports:
-        - containerPort: 80
-      - name: helpercontainer
-        image: busybox
-        command: ["/binbash", "-c" "while true; do echo welcome to sathya; sleep 10; done"]
-         volumeMounts:
+
+        - name: helpercontainer
+          image: busybox
+          command:
+            - /bin/sh
+            - -c
+            - while true; do echo welcome to sathya; sleep 10; done
+          volumeMounts:
             - name: sathya
               mountPath: /opt/reddy/
-        resources:
-          requests:
-            memory: "10Mi"
-            cpu: "100Mi"
-          limits:
-            memory: "20Mi"
-            cpu: "200Mi"
-        mountVolumes:
-            - name: sathya
-              persistentVolumeClaim:
-              claimName: mypvc
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "100m"
+            limits:
+              memory: "20Mi"
+              cpu: "200m"
+
+      volumes:
+        - name: sathya
+          persistentVolumeClaim:
+            claimName: mypvc
+
