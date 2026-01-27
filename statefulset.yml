@@ -1,9 +1,8 @@
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mystatefulset
-  namespace: dev    
+  namespace: dev
 spec:
   serviceName: "firstservice"
   replicas: 1
@@ -16,27 +15,33 @@ spec:
         app: mystatefulset
     spec:
       containers:
-      - name: mycontainer
-        image: shaikmustafa/dm
-        ports:
-        - containerPort: 80
-        volumeMounts:
+        - name: mycontainer
+          image: shaikmustafa/dm
+          ports:
+            - containerPort: 80
+          volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
-      - name: helpercontainer
-        image: busybox  
-        command: ["/bin/bash", "-c", "while true; do echo welcome to sathya; sleep 10; done"]
-         volumeMounts:
-            - name: mypvc
-              mountPath: /opt/nadha/
-        resources:
-          requests:
-            memory: "5Mi"
-            cpu: "50Mi"
-          limits:
-            memory: "10Mi"
-            cpu: "100Mi"
-        volumes:
+
+        - name: helpercontainer
+          image: busybox
+          command:
+            - /bin/sh
+            - -c
+            - while true; do echo welcome to sathya; sleep 10; done
+          volumeMounts:
             - name: sathya
-              persistentVolumeClaim:
-              claimName: mypvc
+              mountPath: /opt/nadha/
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "50m"
+            limits:
+              memory: "10Mi"
+              cpu: "100m"
+
+      volumes:
+        - name: sathya
+          persistentVolumeClaim:
+            claimName: mypvc
+
