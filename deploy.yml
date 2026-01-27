@@ -23,8 +23,8 @@ spec:
               mountPath: /opt/reddy/
 
         - name: helpercontainer
-          image: busybox
-           command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
+          image: shaikmustafa/dm
+          command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
           volumeMounts:
             - name: sathya
               mountPath: /opt/reddy/
