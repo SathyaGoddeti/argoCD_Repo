@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -36,9 +37,9 @@ spec:
         - name: sathya
           persistentVolumeClaim:
             claimName: mypvc
-     strategy:   
-       type: RollingUpdate
-         rollingUpdate:
-           maxUnavailable: 1
-           maxSurge: 1
+      strategy:   
+        type: RollingUpdate
+          rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
 
