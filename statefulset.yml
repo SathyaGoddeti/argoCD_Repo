@@ -2,16 +2,19 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mystatefulset
+  namespace: dev
 spec:
   serviceName: "firstservice"
   replicas: 1
   selector:
     matchLabels:
       app: mystatefulset
+      env: devenv
   template:
     metadata:
       labels:
         app: mystatefulset
+        env: devenv
     spec:
       containers:
         - name: mycontainer
