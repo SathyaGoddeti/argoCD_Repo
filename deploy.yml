@@ -36,4 +36,9 @@ spec:
         - name: sathya
           persistentVolumeClaim:
             claimName: mypvc
+      strategy:   
+        type: RollingUpdate
+          rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
 
