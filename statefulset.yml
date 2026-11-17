@@ -22,9 +22,6 @@ spec:
           image: shaikmustafa/dm
           ports:
             - containerPort: 80
-          volumeMounts:
-            - name: sathya
-              mountPath: /opt/nadha/
 
         - name: helpercontainer
           image: shaikmustafa/dm
@@ -32,14 +29,7 @@ spec:
             - /bin/sh
             - -c
             - while true; do echo welcome to sathya; sleep 10; done
-          volumeMounts:
-            - name: sathya
-              mountPath: /opt/nadha/
-
-      volumes:
-        - name: sathya
-          persistentVolumeClaim:
-            claimName: mypvc
+         
 
   updateStrategy:
     type: RollingUpdate
