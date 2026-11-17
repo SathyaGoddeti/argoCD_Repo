@@ -23,4 +23,7 @@ spec:
             - containerPort: 80
         - name: helpercontainer
           image: shaikmustafa/dm
-          command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
+          command:
+            - /bin/sh
+            - -c
+            - while true; do echo welcome to sathya; sleep 10; done
