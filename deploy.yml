@@ -21,6 +21,7 @@ spec:
           image: shaikmustafa/dm
           ports:
             - containerPort: 80
+
         - name: helpercontainer
           image: shaikmustafa/dm
           command:

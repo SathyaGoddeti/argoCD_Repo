@@ -25,16 +25,22 @@ spec:
           volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
+
         - name: helpercontainer
           image: shaikmustafa/dm
-          command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
+          command:
+            - /bin/sh
+            - -c
+            - while true; do echo welcome to sathya; sleep 10; done
           volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
+
       volumes:
         - name: sathya
           persistentVolumeClaim:
             claimName: mypvc
+
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:

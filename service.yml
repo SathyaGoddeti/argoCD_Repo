@@ -5,7 +5,6 @@ metadata:
   name: firstservice
   namespace: dev
 spec:
-  # A headless Service is required for stable StatefulSet network identities.
   clusterIP: None
   selector:
     app: mystatefulset
@@ -14,6 +13,7 @@ spec:
     - name: http
       port: 80
       targetPort: 80
+
 ---
 apiVersion: v1
 kind: Service
