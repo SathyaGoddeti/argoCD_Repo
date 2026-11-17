@@ -5,7 +5,7 @@ metadata:
   name: mystatefulset
   namespace: dev
 spec:
-  serviceName: "firstservice"
+  serviceName: firstservice
   replicas: 2
   selector:
     matchLabels:
@@ -25,21 +25,17 @@ spec:
           volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
-
         - name: helpercontainer
           image: shaikmustafa/dm
           command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
           volumeMounts:
             - name: sathya
               mountPath: /opt/nadha/
-
       volumes:
         - name: sathya
           persistentVolumeClaim:
             claimName: mypvc
-      strategy:   
-        type: RollingUpdate
-          rollingUpdate:
-            maxUnavailable: 1
-            maxSurge: 1
-
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
