@@ -21,24 +21,11 @@ spec:
           image: shaikmustafa/dm
           ports:
             - containerPort: 80
-          volumeMounts:
-            - name: sathya
-              mountPath: /opt/reddy/
+          
 
         - name: helpercontainer
           image: shaikmustafa/dm
           command: ['sh', '-c', 'while true; do echo welcome to sathya; sleep 10; done']
-          volumeMounts:
-            - name: sathya
-              mountPath: /opt/reddy/
+         
 
-      volumes:
-        - name: sathya
-          persistentVolumeClaim:
-            claimName: mypvc
-      strategy:   
-        type: RollingUpdate
-          rollingUpdate:
-            maxUnavailable: 1
-            maxSurge: 1
-
+      
